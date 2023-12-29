@@ -1,7 +1,6 @@
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
-#判断http，如果是，则跳转https
 async function handleRequest(request) {
     let url = new URL(request.url)
 
@@ -13,7 +12,7 @@ async function handleRequest(request) {
   <html lang="en">
   <head>
       <meta charset="UTF-8">
-      <title>个人导航</title> #头部导航名称
+      <title>个人导航</title> 
       <style>
       body {
           display: flex;
@@ -37,7 +36,7 @@ async function handleRequest(request) {
 
   </head>
   <body>
-      <button onclick="location.href='https://baidu.com'">1站</button> #可以删除或添加额外的导航
+      <button onclick="location.href='https://baidu.com'">1站</button> 
       <button onclick="location.href='https://baidu.com'">2站</button> 
       <button onclick="location.href='https://baidu.com'">3站</button> 
       <button onclick="location.href='https://baidu.com'">4站</button>
@@ -47,7 +46,7 @@ async function handleRequest(request) {
       <button onclick="location.href='https://baidu.com'">8站</button>
       <button onclick="location.href='https://baidu.com'">9站</button>
       <div class="description">一键复制：</div>
-      <div class="hiddenContent" id="text-to-copy">https://baidu.com</div> #隐藏式链接
+      <div class="hiddenContent" id="text-to-copy">https://baidu.com</div> 
     <button onclick="copyText()">复制链接</button>
     <script>
         function copyText() { 
