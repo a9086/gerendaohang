@@ -1,0 +1,65 @@
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+#判断http，如果是，则跳转https
+async function handleRequest(request) {
+    let url = new URL(request.url)
+
+    if (url.protocol !== 'https:') {
+      url.protocol = 'https'
+      return Response.redirect(url.href)
+    }
+  const html = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>轻云导航</title> #头部导航名称
+      <style>
+      body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          margin: 0;
+          background-color: #f0f0f0;
+          font-family: Arial, sans-serif;
+      }
+      .hiddenContent {
+          display: none;
+      }
+      button {
+          font-size: 1.2em;
+          padding: 0.2em 1em;
+      }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+      <button onclick="location.href='https://baidu.com'">1站</button> #可以删除或添加额外的导航
+      <button onclick="location.href='https://baidu.com'">2站</button> 
+      <button onclick="location.href='https://baidu.com'">3站</button> 
+      <button onclick="location.href='https://baidu.com'">4站</button>
+      <button onclick="location.href='https://baidu.com'">5站</button>
+      <button onclick="location.href='https://baidu.com'">6站</button>
+      <button onclick="location.href='https://baidu.com'">7站</button>
+      <button onclick="location.href='https://baidu.com'">8站</button>
+      <button onclick="location.href='https://baidu.com'">9站</button>
+      <div class="description">一键复制：</div>
+      <div class="hiddenContent" id="text-to-copy">https://baidu.com</div> #隐藏式链接
+    <button onclick="copyText()">复制链接</button>
+    <script>
+        function copyText() { 
+            let textToCopy = document.getElementById('text-to-copy').textContent;
+            navigator.clipboard.writeText(textToCopy)
+            .then(() => alert('复制成功!'))
+            .catch(err => alert('复制失败，请手动复制'));
+        }
+    </script>
+  </body>
+  </html>`
+  return new Response(html, {
+      headers: { 'content-type': 'text/html' },
+  })
+}
